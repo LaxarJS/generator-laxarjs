@@ -1,0 +1,19 @@
+{
+   "name": "<%= name %>",
+   "version": "0.1.0-pre",
+   "description": "<%= description %>",
+   "<%= licenseLabel %>": <%- licenses %>,
+   "authors": [ "<%= author %>" ],
+   "main": "<%= name %>.js",
+   "moduleType": "amd",
+   "ignore": [
+      ".*",
+      "Gruntfile.js",
+      "node_modules",
+      "bower_components"
+   ],
+   "dependencies": {
+      "laxar": "^1.0.0"
+   }
+}
+

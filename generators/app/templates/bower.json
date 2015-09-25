@@ -1,0 +1,14 @@
+{
+   "name": "<%= name %>",
+   "version": "<%= version %>",
+   "description": "<%= description %>",
+   "<%= licenseLabel %>": <%- licenses %>,
+   "dependencies": {
+      "laxar": "~1.1.0-alpha.3",
+      "laxar-uikit": "~1.1.0",
+      "laxar-patterns": "~1.0.0"
+   },
+   "devDependencies": {
+      "jasmine": "1.3.x"
+   }
+}

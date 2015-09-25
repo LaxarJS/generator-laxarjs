@@ -1,0 +1,5 @@
+.two-columns-layout,
+.two-columns-layout > * {
+   position: relative;
+   margin: 20px;
+}

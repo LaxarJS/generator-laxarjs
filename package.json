@@ -1,0 +1,28 @@
+{
+  "name": "generator-laxarjs",
+  "version": "0.1.0",
+  "description": "Yeoman generator for LaxarJS applications and artifacts",
+  "files": [
+    "generators/app",
+    "generators/activity",
+    "generators/control",
+    "generators/widget",
+    "lib"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "scripts": {
+    "test": "jasmine"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "requirejs": "2.1.19",
+    "yeoman-generator": "^0.20.2",
+    "mkdirp": "^0.5.1",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "jasmine": "~2.3.0"
+  }
+}

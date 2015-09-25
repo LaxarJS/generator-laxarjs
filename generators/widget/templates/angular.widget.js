@@ -1,0 +1,21 @@
+<%- banner %>
+define( [
+   'angular'
+], function( ng ) {
+   'use strict';
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   Controller.$inject = [ '$scope' ];
+
+   function Controller( $scope ) {
+
+      /* :) */
+
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   return ng.module( '<%= angularModuleName %>', [] ).controller( '<%= angularControllerName %>', Controller );
+
+} );
