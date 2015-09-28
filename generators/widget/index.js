@@ -12,6 +12,7 @@ var path = require( 'path' );
 var _ = require( 'lodash' );
 var util = require( '../../lib/util' );
 var commonPrompts = require( '../../lib/common-prompts' );
+var bowerDefaults = require('../../lib/bower-defaults.json' );
 
 module.exports = generators.Base.extend( {
 
@@ -59,6 +60,8 @@ module.exports = generators.Base.extend( {
          path: widgetName
       };
 
+      this.placeholder.dependencies = bowerDefaults.dependencies;
+      this.placeholder.devDependencies = bowerDefaults.devDependencies;
    },
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////

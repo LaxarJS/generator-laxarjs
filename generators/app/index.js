@@ -13,6 +13,7 @@ var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 var util = require( '../../lib/util' );
 var commonPrompts = require( '../../lib/common-prompts' );
+var bowerDefaults = require('../../lib/bower-defaults.json' );
 
 module.exports = generators.Base.extend( {
 
@@ -34,6 +35,9 @@ module.exports = generators.Base.extend( {
          banner: ''
       };
       this.placeholder.licenses = this.config.get( 'licenses' )? this.config.get( 'licenses' ) : 'none';
+
+      this.placeholder.dependencies = bowerDefaults.dependencies;
+      this.placeholder.devDependencies = bowerDefaults.devDependencies;
    },
 
    prompting: function() {

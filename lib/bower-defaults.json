@@ -1,0 +1,10 @@
+{
+   "dependencies": {
+      "laxar": "~1.1.0-alpha.6",
+      "laxar-uikit": "~1.1.0",
+      "laxar-patterns": "~1.1.0-alpha.1"
+   },
+   "devDependencies": {
+      "jasmine": "1.3.x"
+   }
+}
