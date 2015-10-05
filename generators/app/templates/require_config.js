@@ -12,12 +12,6 @@ var require = {
       'angular-route': 'angular-route/angular-route',
       'angular-sanitize': 'angular-sanitize/angular-sanitize',
 
-      // LaxarJS Core (tests only):
-      'laxar/laxar_testing': 'laxar/dist/laxar_testing',
-      jquery: 'jquery/dist/jquery',
-      jasmine: 'jasmine/lib/jasmine-core/jasmine',
-      q_mock: 'q_mock/q',
-
       // LaxarJS Patterns:
       'laxar-patterns': 'laxar-patterns/dist/laxar-patterns',
       'json-patch': 'fast-json-patch/src/json-patch-duplex',
@@ -36,7 +30,18 @@ var require = {
       'laxar-path-default-theme': 'laxar-uikit/dist/themes/default.theme',
 
       // LaxarJS application modules (contents are generated):
-      'laxar-application-dependencies': '../var/flows/main/dependencies'
+      'laxar-application-dependencies': '../var/flows/main/dependencies',
+
+      // Testing: LaxarJS Mocks:
+      'laxar-mocks': 'laxar-mocks/dist/laxar-mocks',
+      jasmine2: 'jasmine2/lib/jasmine-core/jasmine',
+      'promise-polyfill': 'promise-polyfill/Promise',
+
+      // Testing: old LaxarJS testing
+      'laxar/laxar_testing': 'laxar/dist/laxar_testing',
+      jquery: 'jquery/dist/jquery',
+      jasmine: 'jasmine/lib/jasmine-core/jasmine',
+      q_mock: 'q_mock/q'
    },
    packages: [
       {

@@ -9,6 +9,7 @@
       "laxar-patterns": "<%= dependencies[ 'laxar-patterns' ] %>"
    },
    "devDependencies": {
-      "jasmine": "<%= devDependencies.jasmine %>"
+      "jasmine": "<%= devDependencies.jasmine %>",
+      "laxar-mocks": "<%= devDependencies[ 'laxar-mocks' ] %>"
    }
 }

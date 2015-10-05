@@ -1,32 +1,38 @@
 <%- banner %>
 define( [
-   'json!../widget.json',
-   '../<%= name %>',
-   'laxar/laxar_testing'
-], function( descriptor, widgetModule, ax ) {
-   'use strict';
+  'json!../widget.json',
+  'laxar-mocks'
+], function( descriptor, axMocks ) {
+  'use strict';
 
-   describe( '<%= name %>', function() {
+   // Minimalistic test setup. More information:
+   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
 
-      var testBed;
+   describe( 'The <%= name %>', function() {
 
-      beforeEach( function setup() {
-         testBed = ax.testing.portalMocksAngular.createControllerTestBed( descriptor );
-         testBed.featuresMock = {};
-         testBed.setup();
+      beforeEach( axMocks.createSetupForWidget( descriptor, {
+         knownMissingResources: []
+      } ) );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      beforeEach( function() {
+         axMocks.widget.configure( {} );
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      afterEach( function() {
-         testBed.tearDown();
+      beforeEach( axMocks.widget.load );
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      it( 'still needs some tests', function() {
+         // ... first test here
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      it( 'still needs some tests.' );
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      afterEach( axMocks.tearDown );
 
    } );
 

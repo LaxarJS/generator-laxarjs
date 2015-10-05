@@ -1,4 +1,4 @@
-<%- banner%>
+<%- banner %>
 define( [
    'angular',
    'laxar-patterns'

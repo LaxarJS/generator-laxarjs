@@ -1,45 +1,47 @@
-<%- banner%>
+<%- banner %>
 define( [
-   '../my-navigation-widget',
-   'laxar/laxar_testing'
-], function( widgetModule, ax ) {
+   'json!../widget.json',
+   'laxar-mocks',
+   'angular-mocks'
+], function( descriptor, axMocks, ngMocks ) {
    'use strict';
 
-   describe( 'A MyNavigationWidget', function() {
+   // More information on widget tests:
+   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
+   describe( 'The MyNavigationWidget', function() {
 
-      var testBed;
-
-      beforeEach( function setup() {
-         testBed = ax.testing.portalMocksAngular.createControllerTestBed( 'example/my-navigation-widget' );
-         testBed.injections = {
-            axFlowService: { constructAnchor: function() { return '#/mockPlace'; } }
-         };
-      } );
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      afterEach( function() {
-         testBed.tearDown();
-      } );
+      beforeEach( axMocks.createSetupForWidget( descriptor, {
+         knownMissingResources: [ 'default.theme/css/my-navigation-widget.css' ]
+      } ) );
+      afterEach( axMocks.tearDown );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       describe( 'with links', function() {
 
-         beforeEach( function setup() {
-            spyOn( testBed.injections.axFlowService, 'constructAnchor' ).andCallThrough();
+         var constructAnchor_;
 
-            testBed.featuresMock = {
+         beforeEach( function() {
+            axMocks.widget.configure( {
                links: [ { htmlLabel: 'home', target: 'someTarget' } ]
-            };
-            testBed.setup();
+            } );
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+         beforeEach( ngMocks.inject( function( axFlowService ) {
+            constructAnchor_ = spyOn( axFlowService, 'constructAnchor' ).and.callFake( function() {
+               return '#/mockPlace';
+            } );
+         } ) );
+
+         beforeEach( axMocks.widget.load );
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
          it( 'uses the configured targets to generate the corresponding URLs', function() {
-            expect( testBed.injections.axFlowService.constructAnchor ).toHaveBeenCalledWith( 'someTarget' );
-            expect( testBed.scope.links[ 0 ] ).toEqual( { href: '#/mockPlace', htmlLabel: 'home' } );
+            expect( constructAnchor_ ).toHaveBeenCalledWith( 'someTarget' );
+            expect( axMocks.widget.$scope.links[ 0 ] ).toEqual( { href: '#/mockPlace', htmlLabel: 'home' } );
          } );
 
       } );
@@ -48,21 +50,22 @@ define( [
 
       describe( 'with buttons', function() {
 
-         var buttons;
+         var buttons_;
 
-         beforeEach( function setup() {
-            buttons = [ { htmlLabel: 'submit', target: '_self' } ];
-            testBed.featuresMock = { buttons: buttons };
-            testBed.setup();
+         beforeEach( function() {
+            buttons_ = [ { htmlLabel: 'submit', target: '_self' } ];
+            axMocks.widget.configure( { buttons: buttons_ } );
          } );
+
+         beforeEach( axMocks.widget.load );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
          it( 'allows to navigate through events', function() {
-            testBed.scope.$apply( function() {
-               testBed.scope.handleClick( buttons[ 0 ] );
+            axMocks.widget.$scope.$apply( function() {
+               axMocks.widget.$scope.handleClick( buttons_[ 0 ] );
             } );
-            expect( testBed.scope.eventBus.publish ).toHaveBeenCalledWith( 'navigateRequest._self', {
+            expect( axMocks.widget.axEventBus.publish ).toHaveBeenCalledWith( 'navigateRequest._self', {
                target: '_self'
             } );
          } );
