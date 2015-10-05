@@ -6,8 +6,7 @@
    "authors": [ "<%= author %>" ],
    "dependencies": {
       "laxar": "<%= dependencies.laxar %>",
-      "laxar-uikit": "<%= dependencies[ 'laxar-uikit' ] %>",
-      "laxar-patterns": "<%= dependencies[ 'laxar-patterns' ] %>"
+      "laxar-uikit": "<%= dependencies[ 'laxar-uikit' ] %>"
    },
    "devDependencies": {
       "jasmine": "<%= devDependencies.jasmine %>"

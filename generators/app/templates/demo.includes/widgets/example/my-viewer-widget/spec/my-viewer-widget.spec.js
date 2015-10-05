@@ -1,40 +1,41 @@
-<%- banner%>
+<%- banner %>
 define( [
-   '../my-viewer-widget',
-   'laxar/laxar_testing'
-], function( widgetModule, ax ) {
+   'json!../widget.json',
+   'laxar-mocks'
+], function( descriptor, axMocks ) {
    'use strict';
 
-   describe( 'A MyViewerWidget', function() {
+   // More information on widget tests:
+   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
+   describe( 'The my-viewer-widget', function() {
 
-      var testBed;
+      beforeEach( axMocks.createSetupForWidget( descriptor ) );
+      afterEach( axMocks.tearDown );
 
-      beforeEach( function setup() {
-         testBed = ax.testing.portalMocksAngular.createControllerTestBed( 'example/my-viewer-widget' );
-         testBed.featuresMock = {
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      beforeEach( function() {
+         axMocks.widget.configure( {
             document: {
                resource: 'myDocument'
             }
-         };
-         testBed.setup();
+         } );
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      afterEach( function() {
-         testBed.tearDown();
-      } );
+      beforeEach( axMocks.widget.load );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       it( 'subscribes to (incremental) changes to its document resource', function() {
 
-         expect( testBed.scope.eventBus.subscribe ).toHaveBeenCalledWith(
+         expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
             'didReplace.myDocument',
             jasmine.any( Function )
          );
 
-         expect( testBed.scope.eventBus.subscribe ).toHaveBeenCalledWith(
+         expect( axMocks.widget.axEventBus.subscribe ).toHaveBeenCalledWith(
             'didUpdate.myDocument',
             jasmine.any( Function )
          );
@@ -46,17 +47,17 @@ define( [
       describe( 'having received a document resource', function() {
 
          beforeEach( function() {
-            testBed.eventBusMock.publish( 'didReplace.myDocument', {
+            axMocks.eventBus.publish( 'didReplace.myDocument', {
                resource: 'myDocument',
                data: { htmlTitle: 'Title', htmlText: 'and text' }
             } );
-            jasmine.Clock.tick( 0 );
+            axMocks.eventBus.flush();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
          it( 'reflects the resource state', function() {
-            expect( testBed.scope.model ).toEqual( { htmlTitle: 'Title', htmlText: 'and text' } );
+            expect( axMocks.widget.$scope.model ).toEqual( { htmlTitle: 'Title', htmlText: 'and text' } );
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,20 +65,20 @@ define( [
          describe( 'and subsequent updates', function() {
 
             beforeEach( function() {
-               testBed.eventBusMock.publish( 'didUpdate.myDocument', {
+               axMocks.eventBus.publish( 'didUpdate.myDocument', {
                   resource: 'myDocument',
                   patches: [
                      { op: 'replace', path : '/htmlTitle', value : 'Hey!' },
                      { op: 'replace', path : '/htmlText', value : 'Ho!' }
                   ]
                } );
-               jasmine.Clock.tick( 0 );
+               axMocks.eventBus.flush();
             } );
 
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
             it( 'reflects the updated resource state', function() {
-               expect( testBed.scope.model ).toEqual( { htmlTitle: 'Hey!', htmlText: 'Ho!' } );
+               expect( axMocks.widget.$scope.model ).toEqual( { htmlTitle: 'Hey!', htmlText: 'Ho!' } );
             } );
 
          } );

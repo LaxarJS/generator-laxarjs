@@ -1,43 +1,43 @@
-<%- banner%>
+<%- banner %>
 define( [
-   '../my-editor-widget',
-   'laxar/laxar_testing'
-], function( widgetModule, ax ) {
+   'json!../widget.json',
+   'laxar-mocks'
+], function( descriptor, axMocks ) {
    'use strict';
 
-   describe( 'A MyEditorWidget', function() {
+   // More information on widget tests:
+   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
+   describe( 'The my-editor-widget', function() {
 
-      var testBed;
+      beforeEach( axMocks.createSetupForWidget( descriptor, {} ) );
+      afterEach( axMocks.tearDown );
 
-      beforeEach( function setup() {
-         testBed = ax.testing.portalMocksAngular.createControllerTestBed( 'example/my-editor-widget' );
-         testBed.featuresMock = {
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      beforeEach( function() {
+         axMocks.widget.configure( {
             document: {
                resource: 'myDocument'
             }
-         };
-         testBed.setup();
+         } );
       } );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      afterEach( function() {
-         testBed.tearDown();
-      } );
+      beforeEach( axMocks.widget.load );
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       describe( 'upon entry navigation', function() {
 
          beforeEach( function() {
-            testBed.eventBusMock.publish( 'didNavigate' );
-            jasmine.Clock.tick( 0 );
+            axMocks.triggerStartupEvents();
          } );
 
          /////////////////////////////////////////////////////////////////////////////////////////////////////
 
          it( 'publishes the initial state of its document resource', function() {
-            expect( testBed.scope.eventBus.publish ).toHaveBeenCalledWith(
+            expect( axMocks.widget.axEventBus.publish ).toHaveBeenCalledWith(
                'didReplace.myDocument',
                jasmine.any( Object )
             );
@@ -48,18 +48,21 @@ define( [
          describe( 'after the document title was edited', function() {
 
             beforeEach( function() {
-               testBed.scope.model.htmlTitle = 'Hey!';
-               testBed.scope.$apply();
+               axMocks.widget.$scope.model.htmlTitle = 'Hey!';
+               axMocks.widget.$scope.$apply();
             } );
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////
 
             it( 'publishes the corresponding update to the document resource', function() {
-               expect( testBed.scope.eventBus.publish ).toHaveBeenCalledWith(
+               expect( axMocks.widget.axEventBus.publish ).toHaveBeenCalledWith(
                   'didUpdate.myDocument',
-                  { resource: 'myDocument', patches: [
-                     { op: 'replace', path : '/htmlTitle', value : 'Hey!' }
-                  ] }
+                  {
+                     resource: 'myDocument',
+                     patches: [
+                        { op: 'replace', path : '/htmlTitle', value : 'Hey!' }
+                     ]
+                  }
                );
             } );
 
@@ -70,23 +73,27 @@ define( [
          describe( 'after the document text was edited', function() {
 
             beforeEach( function() {
-               testBed.scope.model.htmlText= 'Ho!';
-               testBed.scope.$apply();
+               axMocks.widget.$scope.model.htmlText = 'Ho!';
+               axMocks.widget.$scope.$apply();
             } );
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////
 
             it( 'publishes the corresponding update to the document resource', function() {
-               expect( testBed.scope.eventBus.publish ).toHaveBeenCalledWith(
+               expect( axMocks.widget.axEventBus.publish ).toHaveBeenCalledWith(
                   'didUpdate.myDocument',
-                  { resource: 'myDocument', patches: [
-                     { op: 'replace', path : '/htmlText', value : 'Ho!' }
-                  ] }
+                  {
+                     resource: 'myDocument',
+                     patches: [
+                        { op: 'replace', path : '/htmlText', value : 'Ho!' }
+                     ]
+                  }
                );
             } );
 
          } );
 
       } );
+
    } );
 } );

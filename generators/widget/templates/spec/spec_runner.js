@@ -5,6 +5,8 @@
       title: '<%= name %> Specification',
       tests: [
          '<%= name %>.spec'
-      ]
-   };
+      ],
+      testRunner: 'laxar-mocks',
+      jasmineMajorVersion: 2
+  };
 } )( this );
