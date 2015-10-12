@@ -1,9 +1,9 @@
 <%- banner %>
 define( [
-  'json!../widget.json',
-  'laxar-mocks'
+   'json!../widget.json',
+   'laxar-mocks'
 ], function( descriptor, axMocks ) {
-  'use strict';
+   'use strict';
 
    // Minimalistic test setup. More information:
    // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md

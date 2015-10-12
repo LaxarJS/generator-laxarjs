@@ -36,6 +36,7 @@ module.exports = generators.Base.extend( {
       'use strict';
       var controlName = util.determineArtifactName( this );
       this.controlDirname = util.determineArtifactDirName( this, path.join( 'includes', 'controls' ) );
+      var laxarIntegrationTechnology = this.config.get( 'laxarIntegrationTechnology' ) || 'plain';
 
       this.placeholder = {
          name: controlName,
@@ -44,6 +45,7 @@ module.exports = generators.Base.extend( {
          licenses: this.config.get( 'licenses' ),
          homepage: this.config.get( 'homepage' ),
          author: this.config.get( 'author' ),
+         laxarIntegrationTechnology: laxarIntegrationTechnology,
          cssClassName: '',
          banner: ''
       };
@@ -108,10 +110,8 @@ module.exports = generators.Base.extend( {
    writing: function() {
       'use strict';
       var filesToCopy = {
-         'control.js': this.placeholder.name + '.js',
          'control.json': 'control.json',
          'gitignore': '.gitignore',
-         'default.theme/control.html': 'default.theme/' + this.placeholder.name + '.html',
          'default.theme/css/control.css': 'default.theme/css/' + this.placeholder.name + '.css'
       };
       if( this.placeholder.infrastructure ) {
@@ -119,11 +119,20 @@ module.exports = generators.Base.extend( {
          filesToCopy[ 'bower.json' ] = 'bower.json';
       }
 
+      if( this.placeholder.laxarIntegrationTechnology === 'plain' ) {
+         filesToCopy[ 'control.plain.js' ] = this.placeholder.name + '.js';
+      }
+      else if( this.placeholder.laxarIntegrationTechnology === 'angular' ) {
+         filesToCopy[ 'control.angular.js' ] = this.placeholder.name + '.js';
+      }
+
       for( var file in filesToCopy ) {
          if( filesToCopy.hasOwnProperty( file ) ) {
             this.fs.copyTpl(
                this.templatePath( file ),
-               this.destinationPath(  path.join( this.controlDirname, this.placeholder.name, filesToCopy[ file ] ) ),
+               this.destinationPath(
+                  path.join( this.controlDirname, this.placeholder.name, filesToCopy[ file ] )
+               ),
                this.placeholder
             );
          }

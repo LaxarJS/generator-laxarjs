@@ -102,8 +102,10 @@ module.exports = generators.Base.extend( {
             }
          }
 
-         this.placeholder.angularModuleName = _.camelCase( this.placeholder.name );
-         this.placeholder.angularControllerName = _.capitalize( _.camelCase( this.placeholder.name ) ) + 'Controller';
+         this.placeholder.angularModuleName =
+            _.camelCase( this.placeholder.name );
+         this.placeholder.angularControllerName =
+            _.capitalize( _.camelCase( this.placeholder.name ) ) + 'Controller';
 
          if( !this.options.activity ) {
             this.placeholder.cssClassName = _.kebabCase( this.placeholder.name );
@@ -144,14 +146,16 @@ module.exports = generators.Base.extend( {
          filesToCopy[ 'default.theme/css/widget.css' ] = 'default.theme/css/' + this.placeholder.name + '.css';
       }
 
-      if( this.placeholder.laxarIntegrationTechnology === 'plain' && !this.options.activity ) {
-         filesToCopy[ 'plain.widget.js' ] = this.placeholder.name + '.js';
-      }
-      else if( this.placeholder.laxarIntegrationTechnology === 'plain' && this.options.activity ) {
-         filesToCopy[ 'plain.activity.js' ] = this.placeholder.name + '.js';
+      if( this.placeholder.laxarIntegrationTechnology === 'plain' ) {
+         if( this.options.activity ) {
+            filesToCopy[ 'controller.plain.activity.js' ] = this.placeholder.name + '.js';
+         }
+         else {
+            filesToCopy[ 'controller.plain.widget.js' ] = this.placeholder.name + '.js';
+         }
       }
       else if( this.placeholder.laxarIntegrationTechnology === 'angular' ) {
-         filesToCopy[ 'angular.widget.js' ] = this.placeholder.name + '.js';
+         filesToCopy[ 'controller.angular.js' ] = this.placeholder.name + '.js';
       }
 
       if( this.placeholder.infrastructure ) {
@@ -167,7 +171,9 @@ module.exports = generators.Base.extend( {
          if( filesToCopy.hasOwnProperty( file ) ) {
             this.fs.copyTpl(
                this.templatePath( file ),
-               this.destinationPath(  path.join(  this.widgetDirname, this.placeholder.name, filesToCopy[ file ] ) ),
+               this.destinationPath(
+                  path.join( this.widgetDirname, this.placeholder.name, filesToCopy[ file ] )
+               ),
                this.placeholder
             );
          }

@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#4](https://github.com/LaxarJS/generator-laxarjs/issues/4): added template for plain (non-angular) control
 - [#3](https://github.com/LaxarJS/generator-laxarjs/issues/3): fixed jasmine2 dependency path
 
 
