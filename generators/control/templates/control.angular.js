@@ -1,15 +1,14 @@
 <%- banner %>
 define( [
-   'angular',
-   'text!./default.theme/<%= name %>.html'
-], function( ng, <%= angularDirectiveName %>Template  ) {
+   'angular'
+], function( ng ) {
    'use strict';
 
    var directiveName = '<%= angularDirectiveName %>';
 
    var directive = [ function() {
       return {
-         template: <%= angularDirectiveName %>Template,
+         template: '<!-- :) -->',
          link: function( scope, element, attrs ) {
 
             /* :) */
@@ -21,4 +20,5 @@ define( [
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    return ng.module( directiveName, [] ).directive( directiveName, directive );
+
 } );
