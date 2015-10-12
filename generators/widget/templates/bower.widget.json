@@ -9,7 +9,6 @@
       "laxar-uikit": "<%= dependencies[ 'laxar-uikit' ] %>"
    },
    "devDependencies": {
-      "jasmine": "<%= devDependencies.jasmine %>"
+      "laxar-mocks": "<%= dependencies[ 'laxar-mocks' ] %>"
    }
 }
-
