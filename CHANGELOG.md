@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.1.1
+
 - [#3](https://github.com/LaxarJS/generator-laxarjs/issues/3): fixed jasmine2 dependency path
 
 
