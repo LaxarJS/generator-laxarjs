@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.2.1
+
 - [#5](https://github.com/LaxarJS/generator-laxarjs/issues/5): fixed bower source for jasmine2
 
 
