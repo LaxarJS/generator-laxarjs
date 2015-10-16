@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.3.0
+
 - [#7](https://github.com/LaxarJS/generator-laxarjs/issues/7): docs: improved README.md
 - [#6](https://github.com/LaxarJS/generator-laxarjs/issues/6): updated versions of laxar, grunt-laxar, laxar-patterns
 - [#5](https://github.com/LaxarJS/generator-laxarjs/issues/5): fixed bower source for jasmine2
