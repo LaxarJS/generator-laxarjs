@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.4.0
+
 - [#9](https://github.com/LaxarJS/generator-laxarjs/issues/9): app: debug.html now uses merged require_config.js
 
 
