@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#8](https://github.com/LaxarJS/generator-laxarjs/issues/8): app: added Bower and grunt-cli as dev-dependencies
+
 
 ## v0.4.0
 
