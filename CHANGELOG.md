@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.4.1
+
 - [#10](https://github.com/LaxarJS/generator-laxarjs/issues/10): widget: fixed laxar-mocks dev-dependency
 
 
