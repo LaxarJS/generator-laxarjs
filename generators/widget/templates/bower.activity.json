@@ -8,7 +8,7 @@
       "laxar": "<%= dependencies.laxar %>"
    },
    "devDependencies": {
-      "laxar-mocks": "<%= dependencies[ 'laxar-mocks' ] %>"
+      "laxar-mocks": "<%= devDependencies[ 'laxar-mocks' ] %>"
    }
 }
 
