@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#11](https://github.com/LaxarJS/generator-laxarjs/issues/11): project: added missing package.json entries
 - [#10](https://github.com/LaxarJS/generator-laxarjs/issues/10): widget: fixed laxar-mocks dev-dependency
 - [#8](https://github.com/LaxarJS/generator-laxarjs/issues/8): app: added Bower and grunt-cli as dev-dependencies
 
