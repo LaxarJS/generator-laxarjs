@@ -11,9 +11,9 @@
       "optimize": "grunt optimize"
    },
    "devDependencies": {
-      "bower": "~1.6.3",
+      "bower": "~1.7.2",
       "grunt": "~0.4.4",
       "grunt-cli": "~0.1.13",
-      "grunt-laxar": "~1.1.0"
+      "grunt-laxar": "~1.1.2"
    }
 }

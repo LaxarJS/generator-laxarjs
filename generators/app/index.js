@@ -30,7 +30,6 @@ module.exports = generators.Base.extend( {
          port: '8000',
          version: '0.1.0-pre',
          widgets: true,
-         infrastructure: false,
          cssClassName: '',
          banner: ''
       };
@@ -61,11 +60,6 @@ module.exports = generators.Base.extend( {
          name: 'widgets',
          message: 'Should a set of example widgets be generated?',
          default: this.placeholder.widgets
-      }, {
-         type: 'confirm',
-         name: 'infrastructure',
-         message: 'Create a README.md?',
-         default: this.placeholder.infrastructure
       } );
 
       this.prompt( prompts, function( answers ) {
@@ -115,6 +109,7 @@ module.exports = generators.Base.extend( {
          'index.html': 'index.html',
          'init.js': 'init.js',
          'package.json': 'package.json',
+         'README.md': 'README.md',
          'require_config.js': 'require_config.js'
       };
 
@@ -128,9 +123,6 @@ module.exports = generators.Base.extend( {
       }
       mkdirp.sync( path.join( this.destinationRoot(), 'includes', 'themes' ) );
 
-      if( this.placeholder.infrastructure ) {
-         filesToCopy[ 'README.md' ] = 'README.md';
-      }
       for( var file in filesToCopy ) {
          if( filesToCopy.hasOwnProperty( file ) ) {
             this.fs.copyTpl(
