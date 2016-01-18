@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.0
+
 - [#12](https://github.com/LaxarJS/generator-laxarjs/issues/12): use LaxarJS v1.2.0
 
 
