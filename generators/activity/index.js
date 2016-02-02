@@ -1,7 +1,7 @@
 /*global module */
 /*global process */
 /**
- * Copyright 2015 aixigo AG
+ * Copyright 2016 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -23,6 +23,12 @@ module.exports = generators.Base.extend( {
          defaults: '',
          desc: 'Base directory for activities'
       } );
+
+      this.option( 'banner', {
+         type: String,
+         defaults: '',
+         desc: 'Path to a file with a banner'
+      } );
    },
 
    prompting: function() {
@@ -30,7 +36,8 @@ module.exports = generators.Base.extend( {
       var options = {
          options: {
             activity: true,
-            directory:  this.options.directory
+            directory:  this.options.directory,
+            banner: this.options.banner
          }
       };
       if( this.name ) {

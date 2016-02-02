@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 aixigo AG
+ * Copyright 2016 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -17,6 +17,18 @@ var bowerDefaults = require('../../lib/bower-defaults.json' );
 
 module.exports = generators.Base.extend( {
 
+   constructor: function() {
+      'use strict';
+      generators.Base.apply( this, arguments );
+      this.option( 'banner', {
+         type: String,
+         defaults: '',
+         desc: 'Path to a file with a banner'
+      } );
+   },
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
    initializing: function() {
       'use strict';
       var pathBasename = path.basename( this.destinationRoot() );
@@ -31,13 +43,16 @@ module.exports = generators.Base.extend( {
          version: '0.1.0-pre',
          widgets: true,
          cssClassName: '',
-         banner: ''
+         banner: util.getBanner( this )
       };
       this.placeholder.licenses = this.config.get( 'licenses' )? this.config.get( 'licenses' ) : 'none';
 
       this.placeholder.dependencies = bowerDefaults.dependencies;
       this.placeholder.devDependencies = bowerDefaults.devDependencies;
+
    },
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    prompting: function() {
       'use strict';
@@ -50,7 +65,7 @@ module.exports = generators.Base.extend( {
       this.log( 'https://github.com/LaxarJS/laxar/blob/master/docs/concepts.md#laxarjs-concepts\n' );
 
       var prompts = commonPrompts.prompts( 'application', this.placeholder );
-      prompts.push(  {
+      prompts.push( {
          type: 'input',
          name: 'port',
          message: 'Development server port:',
@@ -79,7 +94,7 @@ module.exports = generators.Base.extend( {
             }
          }
 
-         this.placeholder.banner = util.createBanner( this.placeholder );
+         this.placeholder.banner = util.createBanner( this );
          done();
 
       }.bind( this ) );
@@ -92,7 +107,8 @@ module.exports = generators.Base.extend( {
       this.config.set( {
          author: this.placeholder.author,
          homepage: this.placeholder.homepage,
-         licenses:  this.license
+         licenses:  this.license,
+         banner: this.placeholder.banner
       } );
    },
 
