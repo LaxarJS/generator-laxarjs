@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.0
+
 - [#13](https://github.com/LaxarJS/generator-laxarjs/issues/13): generators: added the option banner to all generators
 
 
