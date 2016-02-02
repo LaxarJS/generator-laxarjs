@@ -41,11 +41,10 @@ After answering several questions, the generator creates the bare-bones applicat
 Now you can fetch your project's dependencies using `npm install` and start the application development server by running `grunt laxar-develop`.
 
 
-#### Option Generator
+#### Option for the App-Generator
 
-The app generator has one option.
-
-For a custom banner you can pass the path to a file including the banner as option.
+The app generator has one option for a custom banner.
+You can pass the path to a file including your custom banner as an option.
 The files the generator creates will have this banner.
 
 ```console
