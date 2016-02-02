@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.1
+
 - [#14](https://github.com/LaxarJS/generator-laxarjs/issues/14): docs: improved README.md
 
 
