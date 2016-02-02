@@ -1,7 +1,7 @@
 /*global module */
 /*global process */
 /**
- * Copyright 2015 aixigo AG
+ * Copyright 2016 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -22,6 +22,11 @@ module.exports = generators.Base.extend( {
          type: String,
          required: false,
          desc: 'Name of the artifact'
+      } );
+      this.option( 'banner', {
+         type: String,
+         defaults: '',
+         desc: 'Path to a file with a banner'
       } );
       this.option( 'directory', {
          type: String,
@@ -47,7 +52,7 @@ module.exports = generators.Base.extend( {
          author: this.config.get( 'author' ),
          laxarIntegrationTechnology: laxarIntegrationTechnology,
          cssClassName: '',
-         banner: ''
+         banner:  util.getBanner( this )
       };
 
       this.placeholder.dependencies = bowerDefaults.dependencies;
@@ -88,7 +93,7 @@ module.exports = generators.Base.extend( {
          this.placeholder.angularDirectiveName = createAngularDirectiveName( this.placeholder.name );
          this.placeholder.cssClassName = _.kebabCase( this.placeholder.name );
 
-         this.placeholder.banner = util.createBanner( this.placeholder );
+         this.placeholder.banner = util.createBanner( this );
          done();
 
       }.bind( this ) );
@@ -101,7 +106,8 @@ module.exports = generators.Base.extend( {
       this.config.set( {
          author: this.placeholder.author,
          homepage: this.placeholder.homepage,
-         licenses: this.licenses
+         licenses: this.licenses,
+         banner: this.placeholder.banner
       } );
    },
 

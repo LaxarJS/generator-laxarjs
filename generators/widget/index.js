@@ -1,5 +1,5 @@
 /**
- * Copyright 2015 aixigo AG
+ * Copyright 2016 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -34,6 +34,11 @@ module.exports = generators.Base.extend( {
          defaults: '',
          desc: 'Base directory for widgets'
       } );
+      this.option( 'banner', {
+         type: String,
+         defaults: '',
+         desc: 'Path to a file with a banner'
+      } );
    },
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +60,7 @@ module.exports = generators.Base.extend( {
          author: this.config.get( 'author' ),
          laxarIntegrationTechnology: laxarIntegrationTechnology,
          cssClassName: '',
-         banner: '',
+         banner:  util.getBanner( this ),
          artifactType: artifactType,
          path: widgetName
       };
@@ -111,7 +116,7 @@ module.exports = generators.Base.extend( {
             this.placeholder.cssClassName = _.kebabCase( this.placeholder.name );
          }
 
-         this.placeholder.banner = util.createBanner( this.placeholder );
+         this.placeholder.banner = util.createBanner( this );
          done();
 
       }.bind( this ) );
@@ -125,7 +130,8 @@ module.exports = generators.Base.extend( {
          author: this.placeholder.author,
          homepage: this.placeholder.homepage,
          licenses: this.license,
-         laxarIntegrationTechnology: this.placeholder.laxarIntegrationTechnology
+         laxarIntegrationTechnology: this.placeholder.laxarIntegrationTechnology,
+         banner: this.placeholder.banner
       } );
    },
 

@@ -41,6 +41,22 @@ After answering several questions, the generator creates the bare-bones applicat
 Now you can fetch your project's dependencies using `npm install` and start the application development server by running `grunt laxar-develop`.
 
 
+#### Option Generator
+
+The app generator has one option.
+
+For a custom banner you can pass the path to a file including the banner as option.
+The files the generator creates will have this banner.
+
+```console
+mkdir my-application
+cd my-application
+yo laxarjs --banner=my-custom-banner.txt
+```
+
+The banner will be saved in the Yeoman configuration file (`.yo-rc.json`) and will be used by the sub-generators.
+
+
 ### Sub-Generators
 
 The sub-generators expect a Yeoman configuration file `.yo-rc.json` in the root directory of the application.
@@ -98,7 +114,7 @@ Otherwise, a new directory with the scaffolding is created in the current direct
 
 #### Arguments and Options for Sub-Generators
 
-Each of the three sub-generators accepts the name for the artifact as an argument and the destination path as an option.
+Each of the three sub-generators accepts the name for the artifact as an argument, the destination path as an option and an option for a custom header.
 The following examples are for the widget generator but the others behave accordingly.
 
 You can pass the name for a new widget as an argument from the command line:
@@ -125,3 +141,9 @@ yo laxarjs:widget my-widget --directory=includes/my-app
 
 Using this pattern, the full path can be specified when running the generator.
 The command above creates the new widget in the directory `includes/my-app/my-widget`.
+
+If you want a custom banner for the files the generator creates, you can pass the path to a file including your banner as option:
+
+```console
+yo laxarjs:widget my-widget --banner=my-custom-banner.txt
+```
