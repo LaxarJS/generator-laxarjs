@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.4.0
+
 - [#15](https://github.com/LaxarJS/generator-laxarjs/issues/15): app: improved local installation
 - [#14](https://github.com/LaxarJS/generator-laxarjs/issues/14): docs: improved README.md
 
