@@ -1,6 +1,6 @@
 {
   "name": "generator-laxarjs",
-  "version": "1.4.0-pre",
+  "version": "1.4.0",
   "description": "Yeoman generator for LaxarJS applications and artifacts",
   "license": "MIT",
   "repository": {
