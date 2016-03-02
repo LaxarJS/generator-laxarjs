@@ -3,17 +3,15 @@
 > A simple way to create LaxarJS applications and artifacts
 
 
-## Usage
+## Installation
 
-First you have to install the node modules for [yeoman](http://yeoman.io/):
+First you have to install the required npm modules for [yeoman](http://yeoman.io/) and install the package with the LaxarJS generator:
 ```
-npm install -g yo bower grunt-cli
+npm install -g yo bower grunt-cli generator-laxarjs
 ```
 
-and then install the package with the LaxarJS generator:
-```
-npm install -g generator-laxarjs
-```
+Alternatively you can install the packages locally in the application directory.
+Take a look below to the section ["Local Installation"](#local-installation) .
 
 
 ## Generators
@@ -146,3 +144,22 @@ If you want a custom banner for the files the generator creates, you can pass th
 ```console
 yo laxarjs:widget my-widget --banner=my-custom-banner.txt
 ```
+
+
+## Local Installation
+
+Alternatively to the global installation of the npm modules you can install the packages locally in the application directory:
+
+```
+mkdir my-application
+cd my-application
+npm install yo bower grunt-cli generator-laxarjs
+```
+
+Create a simple npm configuration file for bootstrapping:
+
+```
+echo '{ "scripts": { "yo": "yo" } }' > package.json
+```
+
+The LaxarJS generator will ask if it should overwrite the `package.json` and you should agree.

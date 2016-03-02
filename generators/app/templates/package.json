@@ -8,12 +8,15 @@
       "prepublish": "bower install && grunt optimize",
       "dist": "grunt dist",
       "start": "grunt start",
-      "optimize": "grunt optimize"
+      "optimize": "grunt optimize",
+      "yo": "yo"
    },
    "devDependencies": {
       "bower": "~1.7.2",
       "grunt": "~0.4.4",
       "grunt-cli": "~0.1.13",
-      "grunt-laxar": "~1.1.2"
+      "grunt-laxar": "~1.1.2",
+      "yo": "~1.7.0",
+      "generator-laxarjs": "~1.4.0"
    }
 }
