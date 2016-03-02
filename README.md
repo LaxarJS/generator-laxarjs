@@ -163,3 +163,5 @@ echo '{ "scripts": { "yo": "yo" } }' > package.json
 ```
 
 The LaxarJS generator will ask if it should overwrite the `package.json` and you should agree.
+
+To run Yeoman and the LaxarJS generator use `npm run yo laxarjs` instead of `yo laxarjs`.
