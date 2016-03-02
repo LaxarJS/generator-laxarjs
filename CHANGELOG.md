@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#16](https://github.com/LaxarJS/generator-laxarjs/issues/16): docs: added hint to README.md for local installation
+
 
 ## v1.4.0
 
