@@ -58,7 +58,8 @@ module.exports = generators.Base.extend( {
       'use strict';
       var done = this.async();
 
-      this.log( '\nCreate a LaxarJS application\n' );
+      this.log( '\nLaxarJS generator v' + this.rootGeneratorVersion()  + '\n' );
+      this.log( 'Create a LaxarJS application\n' );
       this.log( 'This generator will create the basic file- and directory structure' +
                 ' of a LaxarJS application in the current directory.\n' );
       this.log( 'For more information about a LaxarJS application, please see the docs at' );

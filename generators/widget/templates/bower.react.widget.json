@@ -1,0 +1,16 @@
+{
+   "name": "<%= name %>",
+   "version": "0.1.0-pre",
+   "description": "<%= description %>",
+   "<%= licenseLabel %>": <%- licenses %>,
+   "authors": [ "<%= author %>" ],
+   "dependencies": {
+      "laxar": "<%= dependencies.laxar %>",
+      "laxar-uikit": "<%= dependencies[ 'laxar-uikit' ] %>",
+      "react": "<%= dependencies[ 'react' ] %>",
+      "laxar-react-adapter": "<%= dependencies[ 'laxar-react-adapter' ] %>"
+   },
+   "devDependencies": {
+      "laxar-mocks": "<%= devDependencies[ 'laxar-mocks' ] %>"
+   }
+}
