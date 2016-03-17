@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#17](https://github.com/LaxarJS/generator-laxarjs/issues/17): generators: added react to technology options for widgets and for controls
 - [#16](https://github.com/LaxarJS/generator-laxarjs/issues/16): docs: added hint to README.md for local installation
 
 

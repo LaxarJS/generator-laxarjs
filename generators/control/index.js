@@ -68,6 +68,12 @@ module.exports = generators.Base.extend( {
 
       var prompts = commonPrompts.prompts( 'control', this.placeholder );
       prompts.push( {
+         type: 'list',
+         name: 'laxarIntegrationTechnology',
+         message: 'Integration technology:',
+         choices: [ 'plain', 'angular', 'react' ],
+         default: this.placeholder.laxarIntegrationTechnology
+      }, {
          type: 'confirm',
          name: 'infrastructure',
          message: 'Create project infrastructure (README.md, bower.json)?',
@@ -90,9 +96,14 @@ module.exports = generators.Base.extend( {
             }
          }
 
-         this.placeholder.angularDirectiveName = createAngularDirectiveName( this.placeholder.name );
-         this.placeholder.cssClassName = _.kebabCase( this.placeholder.name );
+         if( this.placeholder.laxarIntegrationTechnology === 'angular' ) {
+            this.placeholder.angularDirectiveName = createAngularDirectiveName( this.placeholder.name );
+         }
+         else if( this.placeholder.laxarIntegrationTechnology === 'react' ) {
+            this.placeholder.reactClassName = createReactClassName( this.placeholder.name );
+         }
 
+         this.placeholder.cssClassName = _.kebabCase( this.placeholder.name );
          this.placeholder.banner = util.createBanner( this );
          done();
 
@@ -107,6 +118,7 @@ module.exports = generators.Base.extend( {
          author: this.placeholder.author,
          homepage: this.placeholder.homepage,
          licenses: this.licenses,
+         laxarIntegrationTechnology: this.placeholder.laxarIntegrationTechnology,
          banner: this.placeholder.banner
       } );
    },
@@ -120,16 +132,27 @@ module.exports = generators.Base.extend( {
          'gitignore': '.gitignore',
          'default.theme/css/control.css': 'default.theme/css/' + this.placeholder.name + '.css'
       };
+      var integrationTechnology = this.placeholder.laxarIntegrationTechnology;
+
       if( this.placeholder.infrastructure ) {
          filesToCopy[ 'README.md' ] = 'README.md';
-         filesToCopy[ 'bower.json' ] = 'bower.json';
+         if( integrationTechnology === 'react' ) {
+            filesToCopy[ 'bower.react.json' ] = 'bower.json';
+         }
+         else {
+            filesToCopy[ 'bower.json' ] = 'bower.json';
+         }
       }
 
-      if( this.placeholder.laxarIntegrationTechnology === 'plain' ) {
+
+      if( integrationTechnology === 'plain' ) {
          filesToCopy[ 'control.plain.js' ] = this.placeholder.name + '.js';
       }
-      else if( this.placeholder.laxarIntegrationTechnology === 'angular' ) {
+      else if( integrationTechnology === 'angular' ) {
          filesToCopy[ 'control.angular.js' ] = this.placeholder.name + '.js';
+      }
+      else if( integrationTechnology === 'react' ) {
+         filesToCopy[ 'control.react.jsx' ] = this.placeholder.name + '.jsx';
       }
 
       for( var file in filesToCopy ) {
@@ -149,12 +172,31 @@ module.exports = generators.Base.extend( {
 
    end: function() {
       'use strict';
-      this.log( '\nYou can now start developing your control!' );
+      if( this.placeholder.laxarIntegrationTechnology === 'react' ) {
+         var link = 'https://github.com/LaxarJS/laxar-react-adapter/blob/master/README.md';
+         this.log( '\nEnsure that your application is prepared for using the ' +
+                   this.placeholder.laxarIntegrationTechnology + ' adapter or do the necessary steps which' +
+                   ' are described in the documentation of the adapter:' );
+         this.log( link );
+         this.log( '\nThen you can start developing your control!' );
+      }
+      else {
+         this.log( '\nYou can now start developing your control!' );
+      }
       this.log( 'For more information about developing controls with LaxarJS, please refer to the manuals:' );
       this.log( '\nhttps://github.com/LaxarJS/laxar/blob/master/docs/manuals/index.md#manuals' );
    }
 
 } );
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function createReactClassName( artifact ) {
+   'use strict';
+   return artifact.split( /[-_\s]/ ).map( function( part, index ) {
+      return part.charAt( 0 ).toUpperCase() + part.slice( 1 );
+   } ).join( '' );
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

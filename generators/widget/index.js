@@ -78,13 +78,26 @@ module.exports = generators.Base.extend( {
       commonPrompts.greetings( this, this.placeholder.artifactType );
 
       var prompts = commonPrompts.prompts( this.placeholder.artifactType, this.placeholder );
+      if( this.options.activity ) {
+         prompts.push( {
+            type: 'list',
+            name: 'laxarIntegrationTechnology',
+            message: 'Integration technology:',
+            choices: [ 'plain', 'angular' ],
+            default: this.placeholder.laxarIntegrationTechnology
+         } );
+      }
+      else {
+         prompts.push( {
+            type: 'list',
+            name: 'laxarIntegrationTechnology',
+            message: 'Integration technology:',
+            choices: [ 'plain', 'angular', 'react' ],
+            default: this.placeholder.laxarIntegrationTechnology
+         } );
+      }
+
       prompts.push( {
-         type: 'list',
-         name: 'laxarIntegrationTechnology',
-         message: 'Integration technology:',
-         choices: [ 'plain', 'angular' ],
-         default: this.placeholder.laxarIntegrationTechnology
-      }, {
          type: 'confirm',
          name: 'infrastructure',
          message: 'Create project infrastructure (README.md, bower.json)?',
@@ -146,28 +159,38 @@ module.exports = generators.Base.extend( {
          'spec/spec_runner.js': 'spec/spec_runner.js',
          'spec/widget.spec.js': 'spec/' + this.placeholder.name + '.spec.js'
       };
+      var integrationTechnology = this.placeholder.laxarIntegrationTechnology;
+      var widget = !this.options.activity;
 
-      if( !this.options.activity ) {
+      if( widget && integrationTechnology !== 'react' ) {
          filesToCopy[ 'default.theme/widget.html' ] = 'default.theme/' + this.placeholder.name + '.html';
+      }
+      if( widget ) {
          filesToCopy[ 'default.theme/css/widget.css' ] = 'default.theme/css/' + this.placeholder.name + '.css';
       }
 
-      if( this.placeholder.laxarIntegrationTechnology === 'plain' ) {
-         if( this.options.activity ) {
+      if( integrationTechnology === 'plain' ) {
+         if( !widget ) {
             filesToCopy[ 'controller.plain.activity.js' ] = this.placeholder.name + '.js';
          }
          else {
             filesToCopy[ 'controller.plain.widget.js' ] = this.placeholder.name + '.js';
          }
       }
-      else if( this.placeholder.laxarIntegrationTechnology === 'angular' ) {
+      else if( integrationTechnology === 'angular' ) {
          filesToCopy[ 'controller.angular.js' ] = this.placeholder.name + '.js';
+      }
+      else if( integrationTechnology === 'react' ) {
+         filesToCopy[ 'controller.react.jsx' ] = this.placeholder.name + '.jsx';
       }
 
       if( this.placeholder.infrastructure ) {
          filesToCopy[ 'README.md' ] = 'README.md';
-         if( !this.options.activity ) {
+         if( widget && integrationTechnology !== 'react') {
             filesToCopy[ 'bower.widget.json' ] = 'bower.json';
+         }
+         else if ( widget && integrationTechnology === 'react' ) {
+            filesToCopy[ 'bower.react.widget.json' ] = 'bower.json';
          }
          else {
             filesToCopy[ 'bower.activity.json' ] = 'bower.json';
@@ -190,7 +213,17 @@ module.exports = generators.Base.extend( {
 
    end: function() {
       'use strict';
-      this.log( '\nYou can now start developing your ' + this.placeholder.artifactType + '!' );
+      if( this.placeholder.laxarIntegrationTechnology === 'react' ) {
+         var link = 'https://github.com/LaxarJS/laxar-react-adapter/blob/master/README.md';
+         this.log( '\nEnsure that your application is prepared for using the ' +
+                   this.placeholder.laxarIntegrationTechnology + ' adapter or do the necessary steps which' +
+                   ' are described in the documentation of the adapter:' );
+         this.log( link );
+         this.log( '\nThen you can start developing your ' + this.placeholder.artifactType + '!' );
+      }
+      else {
+         this.log( '\nYou can now start developing your ' + this.placeholder.artifactType + '!' );
+      }
       this.log( 'For more information about developing widgets with LaxarJS, please refer to the manuals:' );
       this.log( '\nhttps://github.com/LaxarJS/laxar/blob/master/docs/manuals/index.md#manuals' );
    }
