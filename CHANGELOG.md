@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.5.1
+
 - [#18](https://github.com/LaxarJS/generator-laxarjs/issues/18): app: updated version of dependency in package.json
 
 
