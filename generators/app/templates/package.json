@@ -17,6 +17,6 @@
       "grunt-cli": "~0.1.13",
       "grunt-laxar": "~1.1.2",
       "yo": "~1.7.0",
-      "generator-laxarjs": "~1.4.0"
+      "generator-laxarjs": "~1.5.1"
    }
 }
