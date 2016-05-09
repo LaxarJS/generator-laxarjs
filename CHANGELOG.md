@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#19](https://github.com/LaxarJS/generator-laxarjs/issues/19): generators: fixed license validation and filter for inquirer v1.0.0
+
 
 ## v1.5.1
 
