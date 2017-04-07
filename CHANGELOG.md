@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.6.0
+
 - [#21](https://github.com/LaxarJS/generator-laxarjs/issues/21): generators: changed links of documentation from github to new documentation site
 - [#25](https://github.com/LaxarJS/generator-laxarjs/issues/25): docs: Add hint about arguments when using a local installation of yo
 - [#23](https://github.com/LaxarJS/generator-laxarjs/issues/23): generators: updated version of dependency in bower.json
