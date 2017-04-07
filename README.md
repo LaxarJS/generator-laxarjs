@@ -150,7 +150,7 @@ yo laxarjs:widget my-widget --banner=my-custom-banner.txt
 
 Alternatively to the global installation of the npm modules you can install the packages locally in the application directory:
 
-```
+```console
 mkdir my-application
 cd my-application
 npm install yo bower grunt-cli generator-laxarjs
@@ -158,10 +158,16 @@ npm install yo bower grunt-cli generator-laxarjs
 
 Create a simple npm configuration file for bootstrapping:
 
-```
+```console
 echo '{ "scripts": { "yo": "yo" } }' > package.json
 ```
 
 The LaxarJS generator will ask if it should overwrite the `package.json` and you should agree.
 
 To run Yeoman and the LaxarJS generator use `npm run yo laxarjs` instead of `yo laxarjs`.
+
+When using the local installation of yo the arguments for the generator must be separated by two hyphens to clarify that the arguments are for the generator and not for npm:
+
+```console
+npm run yo laxarjs:widget my-widget -- --directory=includes/my-app
+```

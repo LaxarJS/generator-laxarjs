@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#25](https://github.com/LaxarJS/generator-laxarjs/issues/25): docs: Add hint about arguments when using a local installation of yo
 - [#23](https://github.com/LaxarJS/generator-laxarjs/issues/23): generators: updated version of dependency in bower.json
 - [#19](https://github.com/LaxarJS/generator-laxarjs/issues/19): generators: fixed license validation and filter for inquirer v1.0.0
 - [#18](https://github.com/LaxarJS/generator-laxarjs/issues/18): app: updated version of dependency in package.json
