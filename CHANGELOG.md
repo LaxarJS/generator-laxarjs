@@ -2,7 +2,14 @@
 
 ## Last Changes
 
+
+## v1.5.3
+
 - [#23](https://github.com/LaxarJS/generator-laxarjs/issues/23): generators: updated version of dependency in bower.json
+
+
+## v1.5.2
+
 - [#19](https://github.com/LaxarJS/generator-laxarjs/issues/19): generators: fixed license validation and filter for inquirer v1.0.0
 
 
