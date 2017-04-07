@@ -6,7 +6,7 @@ define( [
    'use strict';
 
    // More information on widget tests:
-   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
+   // https://laxarjs.org/docs/laxar-mocks-v1-latest/manuals/
    describe( 'The my-viewer-widget', function() {
 
       beforeEach( axMocks.createSetupForWidget( descriptor ) );

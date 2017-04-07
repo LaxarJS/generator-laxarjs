@@ -63,7 +63,7 @@ module.exports = generators.Base.extend( {
       this.log( 'This generator will create the basic file- and directory structure' +
                 ' of a LaxarJS application in the current directory.\n' );
       this.log( 'For more information about a LaxarJS application, please see the docs at' );
-      this.log( 'https://github.com/LaxarJS/laxar/blob/master/docs/concepts.md#laxarjs-concepts\n' );
+      this.log( 'https://laxarjs.org/docs/laxar-v1-latest/concepts\n' );
 
       var prompts = commonPrompts.prompts( 'application', this.placeholder );
       prompts.push( {
@@ -160,6 +160,6 @@ module.exports = generators.Base.extend( {
       this.log( 'Then you can run ' + chalk.bold.italic( 'grunt start' ) + ' to start the developing server (port ' + this.placeholder.port + ').' );
       this.log( 'Have fun developing your LaxarJS application! \n' );
       this.log( 'Also, please have a look at the manuals:' );
-      this.log( 'https://github.com/LaxarJS/laxar/blob/master/docs/manuals/index.md'  );
+      this.log( 'https://laxarjs.org/docs/laxar-v1-latest/manuals'  );
    }
 } );

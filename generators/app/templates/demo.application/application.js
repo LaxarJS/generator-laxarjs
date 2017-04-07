@@ -1,4 +1,4 @@
-// See https://github.com/LaxarJS/laxar/blob/master/docs/manuals/configuration.md
+// See https://laxarjs.org/docs/laxar-v1-latest/manuals/configuration/
 window.laxar = ( function() {
    'use strict';
 

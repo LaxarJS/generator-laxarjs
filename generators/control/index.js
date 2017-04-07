@@ -173,7 +173,7 @@ module.exports = generators.Base.extend( {
    end: function() {
       'use strict';
       if( this.placeholder.laxarIntegrationTechnology === 'react' ) {
-         var link = 'https://github.com/LaxarJS/laxar-react-adapter/blob/master/README.md';
+         var link = 'https://laxarjs.org/docs/laxar-react-adapter-v0-latest/';
          this.log( '\nEnsure that your application is prepared for using the ' +
                    this.placeholder.laxarIntegrationTechnology + ' adapter or do the necessary steps which' +
                    ' are described in the documentation of the adapter:' );
@@ -184,7 +184,7 @@ module.exports = generators.Base.extend( {
          this.log( '\nYou can now start developing your control!' );
       }
       this.log( 'For more information about developing controls with LaxarJS, please refer to the manuals:' );
-      this.log( '\nhttps://github.com/LaxarJS/laxar/blob/master/docs/manuals/index.md#manuals' );
+      this.log( '\nhttps://laxarjs.org/docs/laxar-v1-latest/manuals/' );
    }
 
 } );

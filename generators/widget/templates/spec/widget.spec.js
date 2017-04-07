@@ -6,7 +6,7 @@ define( [
    'use strict';
 
    // Minimalistic test setup. More information:
-   // https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/index.md
+   // https://laxarjs.org/docs/laxar-mocks-v1-latest/manuals/
 
    describe( 'The <%= name %>', function() {
 
